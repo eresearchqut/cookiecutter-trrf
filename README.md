@@ -2,13 +2,14 @@
 
 ## About
 
-Some registry owners would like customisations for their TRRF registries.
+It is quite common that registry owners need customisations of their TRRF registries.
 
-In this case we would create a separate project that includes the base TRRF functionality as a git submodule and adds customisations like different templates, registration etc.
+For each customised registry, we will create a separate GitHub project.
+The project will include base TRRF (as a git submodule) and adds customisations like different templates, registration etc. on top.
 
-This project is a Cookiecutter (https://github.com/audreyr/cookiecutter) project template for such projects.
+This is a project template that can be used by Cookiecutter (https://github.com/audreyr/cookiecutter) to create customised registries as needed.
 
-It helps with creating a custom project with minimal manual interventions.
+It helps with creating a custom project with minimal manual interventions by using template files and some configuration values that can be specified at creation time.
 
 ## Usage
 
