@@ -1,0 +1,11 @@
+{
+  "project_name": "Angelman",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "github_repo": "eresearchqut/{{ cookiecutter.project_slug }}",
+  "project_short_description": "{{ cookiecutter.project_name }} is a patient registry based on TRRF (https://github.com/eresearchqut/trrf).",
+  "version": "1.0.0",
+  "_copy_without_render": [
+      "{{ cookiecutter.project_slug/docker-compose*.yml"
+  ]
+
+}
