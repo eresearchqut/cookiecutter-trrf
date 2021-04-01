@@ -1,6 +1,5 @@
 # FROM muccg/rdrf-builder
-# TODO upgrade to 3.7 (both here and main image below)
-FROM python:3.6 as builder
+FROM python:3.8.0 as builder
 
 ENV PYTHONUNBUFFERED 1
 
@@ -11,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libpcre3 \
   libpq5 \
   mime-support \
-  nodejs-legacy \
+  nodejs \
   unixodbc \
   # Builder
   build-essential \
@@ -45,7 +44,7 @@ RUN    pip install -r rdrf/requirements.txt \
 
 VOLUME ["/data"]
 
-FROM python:3.6-slim
+FROM python:3.8.0-slim
 
 ENV PYTHONPATH="/app/rdrf/rdrf/:/app/{{ cookiecutter.project_slug }}/"
 ENV DJANGO_SETTINGS_MODULE {{ cookiecutter.project_slug }}.settings
@@ -66,8 +65,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libpcre3 \
   libpq5 \
   mime-support \
-  nodejs-legacy \
+  nodejs \
   unixodbc \
+  libmagic1 \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN mkdir -p /requirements/rdrf/
