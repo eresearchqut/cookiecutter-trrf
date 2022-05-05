@@ -98,12 +98,8 @@
                     "value": "$DEBUG"
                 },
                 {
-                    "name": "NEW_RELIC_APP_NAME",
-                    "value": "$NEW_RELIC_APP_NAME"
-                },
-                {
-                    "name": "NEW_RELIC_MONITOR_MODE",
-                    "value": "$NEW_RELIC_MONITOR_MODE"
+                    "name": "PROJECT_TITLE",
+                    "value": "$PROJECT_TITLE"
                 },
                 {
                     "name": "TRRF_SOURCE_DIR",
@@ -178,18 +174,12 @@
                 {
                     "name": "DBPASS",
                     "valueFrom": "$DBPASS"
-                },
-                {
-                    "name": "NEW_RELIC_LICENSE_KEY",
-                    "valueFrom": "$NEW_RELIC_LICENSE_KEY"
                 }
             ]
         },
         {
             "name": "xray-daemon",
-            "image": "amazon/aws-xray-daemon",
-            "cpu": 32,
-            "memoryReservation": 256,
+            "image": "public.ecr.aws/xray/aws-xray-daemon:latest",
             "portMappings" : [
                 {
                     "containerPort": 2000,
@@ -199,7 +189,16 @@
                     "containerPort": 2000,
                     "protocol": "tcp"
                 }
-            ]
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "$AWSLOGS_GROUP",
+                    "awslogs-region": "$AWS_DEFAULT_REGION",
+                    "awslogs-stream-prefix": "xray"
+                }
+            }
         }
     ],
     "cpu": "$CPU",
