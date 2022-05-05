@@ -180,7 +180,7 @@
         {
             "name": "xray-daemon",
             "image": "public.ecr.aws/xray/aws-xray-daemon:latest",
-            "portMappings" : [
+            "portMappings": [
                 {
                     "containerPort": 2000,
                     "protocol": "udp"
