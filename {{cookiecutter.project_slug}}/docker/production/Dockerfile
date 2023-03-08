@@ -1,5 +1,5 @@
 # Container to build our prod image
-FROM python:3.8 as builder
+FROM python:3.9 as builder
 
 ENV PYTHONUNBUFFERED 1
 
@@ -35,22 +35,13 @@ WORKDIR /requirements
 COPY rdrf/requirements/* rdrf/
 COPY requirements/* ./
 
+COPY rdrf/clients ./clients
+
 RUN pip install -r rdrf/requirements.txt
 RUN pip install -r requirements.txt
 
-# Container used to build rdrf frontend
-FROM node:9.11.1 as nodebuilder
-
-# TODO separate dev/prod entrypoints?
-COPY docker/dev/docker-entrypoint-node.sh /docker-entrypoint-node.sh
-COPY . /app
-
-WORKDIR /app/rdrf/rdrf/rdrf/frontend
-
-RUN /docker-entrypoint-node.sh build
-
 # Actual image we are building
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 ENV PYTHONUNBUFFERED 1
 
@@ -96,6 +87,8 @@ WORKDIR /requirements
 COPY --from=builder /root/.cache /root/.cache
 COPY --from=builder /requirements/requirements.txt .
 COPY --from=builder /requirements/rdrf/requirements.txt rdrf/
+
+COPY rdrf/clients ./clients
 
 RUN pip install -r rdrf/requirements.txt
 RUN pip install -r requirements.txt

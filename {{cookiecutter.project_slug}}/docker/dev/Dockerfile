@@ -1,5 +1,5 @@
 # FROM muccg/rdrf-builder
-FROM python:3.8.0 as builder
+FROM python:3.9 as builder
 
 ENV PYTHONUNBUFFERED 1
 
@@ -35,6 +35,8 @@ WORKDIR /requirements
 COPY requirements/* ./
 COPY rdrf/requirements/* ./rdrf/
 
+COPY rdrf/clients ./clients
+
 RUN    pip install -r rdrf/requirements.txt \
     && pip install -r rdrf/dev-requirements.txt \
     && pip install -r rdrf/test-requirements.txt \
@@ -44,7 +46,7 @@ RUN    pip install -r rdrf/requirements.txt \
 
 VOLUME ["/data"]
 
-FROM python:3.8.0-slim
+FROM python:3.9-slim
 
 ENV PYTHONPATH="/app/rdrf/rdrf/:/app/{{ cookiecutter.project_slug }}/"
 ENV DJANGO_SETTINGS_MODULE {{ cookiecutter.project_slug }}.settings
