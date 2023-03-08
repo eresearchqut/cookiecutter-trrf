@@ -10,7 +10,8 @@ git remote add origin git@github.com:{{ cookiecutter.github_repo  }}.git
 git push -u origin next_release
 
 git submodule add -b next_release ../trrf.git rdrf
-git ci -m 'Setup TRRF git submodule'
+git add .
+git commit -m 'Setup TRRF git submodule'
 git push
 
 git checkout -b cicd
