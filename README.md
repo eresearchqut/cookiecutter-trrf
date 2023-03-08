@@ -18,7 +18,7 @@ It helps with creating a custom project with minimal manual interventions by usi
 You will need to install Cookiecutter, but unfortunately Cookiecutter has a problem with copying symlinks as is, so you will have to use a fork that solves this problem.
 
 ```sh
-  $ pip install --user git+https://github.com/sztamas/cookiecutter.git
+  $ pip install git+https://github.com/eresearchqut/cookiecutter.git
 ```
 
 ### Create project (from template) locally
