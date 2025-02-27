@@ -37,6 +37,7 @@ COPY requirements/* ./
 
 COPY rdrf/clients ./clients
 
+RUN pip install --upgrade pip setuptools
 RUN pip install -r rdrf/requirements.txt
 RUN pip install -r requirements.txt
 
